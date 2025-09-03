@@ -19,6 +19,6 @@ spec:
         - name: vmselect
           image: {{ printf "%s/%s:%s" .Values.imageRegistry .Values.victoria.vmselect.image .Values.victoria.vmselect.tag }}
           args:
-            - "-storageNode=vmstorage:8400"
+            - "-storageNode=vmstorage:8401"
           ports:
             - containerPort: 8481

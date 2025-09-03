@@ -36,6 +36,9 @@ spec:
     - name: http
       port: 8482
       targetPort: 8482
-    - name: vmstorage
+    - name: vminsert
       port: 8400
       targetPort: 8400
+    - name: vmselect
+      port: 8401
+      targetPort: 8401

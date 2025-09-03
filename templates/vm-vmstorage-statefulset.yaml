@@ -23,8 +23,12 @@ spec:
             - "-retentionPeriod=90d"
             - "-storageDataPath=/storage"
           ports:
-            - containerPort: 8482
-            - containerPort: 8400
+            - name: http
+              containerPort: 8482
+            - name: vminsert
+              containerPort: 8400
+            - name: vmselect
+              containerPort: 8401
           volumeMounts:
             - name: data
               mountPath: /storage
