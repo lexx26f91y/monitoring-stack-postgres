@@ -28,33 +28,21 @@ grafana:
     user: grafana
     password: paR2GTM5CUpJd6pd # Лучше вынести в Secret
     database: grafana
-    host: patroni-leader # Имя сервиса Patroni leader
+    host: postgres # Имя сервиса PostgreSQL
     port: 5432
   datasource:
     name: VictoriaMetrics
     type: prometheus
     url: http://vmselect:8481/select/0/prometheus
 
-patroni:
-  image: patroni
-  tag: "pg16.6"
-  replicas: 2
-  resources: {}
+postgres:
+  image: postgres
+  tag: "16"
+  user: grafana
+  password: paR2GTM5CUpJd6pd
+  database: grafana
   storage:
-    size: 50Gi
-  superuser:
-    username: postgres
-    password: SBJUJH4fnbstsvYy
-  replication:
-    username: replicator
-    password: 9vUe3jEVNVZefLDT
-  grafanaDb:
-    user: grafana
-    password: paR2GTM5CUpJd6pd
-    database: grafana
-  services:
-    leader: patroni-leader
-    replica: patroni-replica
+    size: 40Gi
 
 alertmanager:
   image: alertmanager

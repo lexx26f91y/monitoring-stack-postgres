@@ -15,12 +15,12 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:16
+          image: {{ printf "%s/%s:%s" .Values.imageRegistry .Values.postgres.image .Values.postgres.tag }}
           env:
             - name: POSTGRES_DB
-              value: grafana
+              value: {{ .Values.postgres.database }}
             - name: POSTGRES_USER
-              value: grafana
+              value: {{ .Values.postgres.user }}
             - name: POSTGRES_PASSWORD
               value: {{ .Values.postgres.password }}
           ports:

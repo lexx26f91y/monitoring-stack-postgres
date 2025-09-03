@@ -1,18 +1,19 @@
 Установка
 `helm install monitoring-stack ./monitoring-stack -n monitoring-stack --create-namespace`
 
-Кастомизация 
-```
-helm upgrade --install monitoring-stack ./monitoring-stack \
--n monitoring-stack \
+Кастомизация
+
+helm upgrade --install monitoring-stack ./monitoring-stack
+-n monitoring-stack
 -f my-values.yaml
-```
+
 Заменить пароли:
 -- grafana.adminPassword
--- patroni.superuser.password
--- patroni.replication.password
--- patroni.grafanaDb.password
+-- postgres.password
 
+Архитектура
+- Grafana, Alertmanager, VictoriaMetrics (cluster mode), PostgreSQL (одна нода)
+- Без Patroni, используется обычный PostgreSQL
 
 Дерево файлов:
 monitoring-stack/
@@ -25,7 +26,6 @@ monitoring-stack/
 # Istio
 ├─ istio-gateway.yaml
 ├─ vs-grafana.yaml
-├─ vs-prometheus.yaml
 ├─ vs-alertmanager.yaml
 ├─ vs-vmselect.yaml
 # Grafana
@@ -35,10 +35,6 @@ monitoring-stack/
 ├─ grafana-pvc.yaml
 ├─ grafana-deployment.yaml
 ├─ grafana-service.yaml
-# Prometheus
-├─ prometheus-configmap.yaml
-├─ prometheus-statefulset.yaml
-├─ prometheus-service.yaml
 # Alertmanager
 ├─ alertmanager-configmap.yaml
 ├─ alertmanager-statefulset.yaml
@@ -48,16 +44,8 @@ monitoring-stack/
 ├─ vm-vmselect-deployment.yaml
 ├─ vm-vmstorage-statefulset.yaml
 ├─ vm-services.yaml
-# Patroni / PostgreSQL
-├─ patroni-rbac.yaml
-├─ patroni-configmap.yaml
-├─ patroni-secrets.yaml
-├─ patroni-statefulset.yaml
-├─ patroni-services.yaml
-├─ patroni-pvc.yaml
+# PostgreSQL
+├─ postgresql-deployment.yaml
+├─ postgresql-service.yaml
+├─ postgresql-pvc.yaml
 ├─ grafana-db-init-job.yaml
-
-
-
-
-

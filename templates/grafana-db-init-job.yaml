@@ -9,19 +9,16 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: db-init
-          image: {{ .Values.imageRegistry }}/patroni:pg16.6
+          image: postgres:16
           command:
             - /bin/sh
             - -c
             - |
-              until pg_isready -h patroni-leader -p 5432; do sleep 2; done
-              psql -h patroni-leader -U {{ .Values.patroni.superuser.username }} -tc "SELECT 1 FROM pg_roles WHERE rolname='{{ .Values.patroni.grafanaDb.user }}';" | grep -q 1 || \
-              psql -h patroni-leader -U {{ .Values.patroni.superuser.username }} -c "CREATE USER {{ .Values.patroni.grafanaDb.user }} WITH PASSWORD '{{ .Values.patroni.grafanaDb.password }}';"
-              psql -h patroni-leader -U {{ .Values.patroni.superuser.username }} -tc "SELECT 1 FROM pg_database WHERE datname='{{ .Values.patroni.grafanaDb.database }}';" | grep -q 1 || \
-              psql -h patroni-leader -U {{ .Values.patroni.superuser.username }} -c "CREATE DATABASE {{ .Values.patroni.grafanaDb.database }} OWNER {{ .Values.patroni.grafanaDb.user }};"
+              until pg_isready -h postgres -p 5432; do sleep 2; done
+              psql -h postgres -U {{ .Values.postgres.user }} -tc "SELECT 1 FROM pg_roles WHERE rolname='{{ .Values.grafana.db.user }}';" | grep -q 1 || \
+              psql -h postgres -U {{ .Values.postgres.user }} -c "CREATE USER {{ .Values.grafana.db.user }} WITH PASSWORD '{{ .Values.grafana.db.password }}';"
+              psql -h postgres -U {{ .Values.postgres.user }} -tc "SELECT 1 FROM pg_database WHERE datname='{{ .Values.grafana.db.database }}';" | grep -q 1 || \
+              psql -h postgres -U {{ .Values.postgres.user }} -c "CREATE DATABASE {{ .Values.grafana.db.database }} OWNER {{ .Values.grafana.db.user }};"
           env:
             - name: PGPASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: patroni-secrets
-                  key: SUPERUSER_PASSWORD
+              value: {{ .Values.postgres.password }}
