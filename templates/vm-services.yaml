@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vminsert
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: vminsert
+  ports:
+    - name: http
+      port: 8480
+      targetPort: 8480
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vmselect
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: vmselect
+  ports:
+    - name: http
+      port: 8481
+      targetPort: 8481
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vmstorage
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: vmstorage
+  ports:
+    - name: http
+      port: 8482
+      targetPort: 8482
+    - name: vmstorage
+      port: 8400
+      targetPort: 8400

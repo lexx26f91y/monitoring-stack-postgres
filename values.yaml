@@ -1,0 +1,106 @@
+namespace: monitoring-stack
+
+imageRegistry: dkp-harbor.ens-proto.loc/monitoring-stack
+
+storageClass: tatlin-sc
+
+hosts:
+  grafana: grafana.ens-proto.loc
+  alertmanager: alertmanager.ens-proto.loc
+  vmselect: vmselect.ens-proto.loc
+
+ingress:
+  gatewayName: monitoring-gateway
+  gatewayNamespace: monitoring-stack
+  ingressGatewaySelector:
+    istio: ingressgateway
+
+grafana:
+  image: grafana
+  tag: "12.0.2"
+  replicas: 3
+  resources: {}
+  persistence:
+    size: 40Gi
+  adminUser: admin
+  adminPassword: admin12345 # Лучше вынести в Secret
+  db:
+    user: grafana
+    password: paR2GTM5CUpJd6pd # Лучше вынести в Secret
+    database: grafana
+    host: patroni-leader # Имя сервиса Patroni leader
+    port: 5432
+  datasource:
+    name: VictoriaMetrics
+    type: prometheus
+    url: http://vmselect:8481/select/0/prometheus
+
+patroni:
+  image: patroni
+  tag: "pg16.6"
+  replicas: 2
+  resources: {}
+  storage:
+    size: 50Gi
+  superuser:
+    username: postgres
+    password: SBJUJH4fnbstsvYy
+  replication:
+    username: replicator
+    password: 9vUe3jEVNVZefLDT
+  grafanaDb:
+    user: grafana
+    password: paR2GTM5CUpJd6pd
+    database: grafana
+  services:
+    leader: patroni-leader
+    replica: patroni-replica
+
+alertmanager:
+  image: alertmanager
+  tag: "v0.28.0"
+  replicas: 1
+  storage:
+    size: 10Gi
+  config:
+    global: {}
+    route:
+      receiver: blackhole
+    receivers:
+      - name: blackhole
+
+vmagent:
+  image: vmagent
+  tag: "v1.124.0"
+  replicas: 3
+  resources: {}
+  config: {}
+  remoteWrite:
+    enabled: true
+    url: http://vminsert:8480/insert/0/prometheus
+
+vmalert:
+  image: vmalert
+  tag: "v1.124.0"
+  replicas: 1
+  resources: {}
+  config: {}
+
+victoria:
+  vminsert:
+    image: vminsert
+    tag: "v1.124.0-cluster"
+    replicas: 3
+    resources: {}
+  vmselect:
+    image: vmselect
+    tag: "v1.124.0-cluster"
+    replicas: 3
+    resources: {}
+  vmstorage:
+    image: vmstorage
+    tag: "v1.124.0-cluster"
+    replicas: 3
+    resources: {}
+    storage:
+      size: 300Gi

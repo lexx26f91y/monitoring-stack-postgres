@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vmagent-scrape-config
+  namespace: {{ .Values.namespace }}
+data:
+  prometheus.yaml: |
+    scrape_configs:
+      - job_name: 'kubernetes-pods'
+        kubernetes_sd_configs:
+          - role: pod
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            action: keep
+            regex: vmagent
+      # Добавляй свои targets ниже, например:
+      # - job_name: 'patroni'
+      #   static_configs:
+      #     - targets: ['patroni-leader:5432']

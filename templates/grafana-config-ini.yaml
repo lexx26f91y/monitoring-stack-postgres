@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-ini
+  namespace: {{ .Values.namespace }}
+data:
+  grafana.ini: |
+    [server]
+    protocol = http
+    http_addr = 0.0.0.0
+    http_port = 3000
+
+    [database]
+    type = postgres
+    host = {{ .Values.grafana.db.host }}:{{ .Values.grafana.db.port }}
+    name = {{ .Values.grafana.db.database }}
+    user = {{ .Values.grafana.db.user }}
+    password = ${GF_DATABASE_PASSWORD}
+    ssl_mode = disable
+
+    [security]
+    admin_user = ${GF_SECURITY_ADMIN_USER}
+    admin_password = ${GF_SECURITY_ADMIN_PASSWORD}
+
+    [analytics]
+    reporting_enabled = false
+    check_for_updates = false
+
+    [dashboards]
+    default_home_dashboard_path = /var/lib/grafana/dashboards/home.json

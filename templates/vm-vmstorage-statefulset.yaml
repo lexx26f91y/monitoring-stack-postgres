@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: vmstorage
+  namespace: {{ .Values.namespace }}
+spec:
+  serviceName: vmstorage
+  replicas: {{ .Values.victoria.vmstorage.replicas }}
+  selector:
+    matchLabels:
+      app: vmstorage
+  template:
+    metadata:
+      labels:
+        app: vmstorage
+    spec:
+      imagePullSecrets:
+        - name: harbor-regcred
+      containers:
+        - name: vmstorage
+          image: {{ printf "%s/%s:%s" .Values.imageRegistry .Values.victoria.vmstorage.image .Values.victoria.vmstorage.tag }}
+          args:
+            - "-retentionPeriod=90d"
+            - "-storageDataPath=/storage"
+          ports:
+            - containerPort: 8482
+            - containerPort: 8400
+          volumeMounts:
+            - name: data
+              mountPath: /storage
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: {{ .Values.storageClass | quote }}
+        resources:
+          requests:
+            storage: {{ .Values.victoria.vmstorage.storage.size }}

@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: {{ .Values.ingress.gatewayName }}
+  namespace: {{ .Values.ingress.gatewayNamespace }}
+  labels:
+    {{- toYaml .Values.ingress.ingressGatewaySelector | nindent 4 }}
+spec:
+  selector:
+    {{- toYaml .Values.ingress.ingressGatewaySelector | nindent 4 }}
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - {{ .Values.hosts.grafana | quote }}
+        - {{ .Values.hosts.alertmanager | quote }}
+        - {{ .Values.hosts.vmselect | quote }}

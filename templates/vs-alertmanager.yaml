@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: alertmanager
+  namespace: {{ .Values.namespace }}
+spec:
+  hosts:
+    - {{ .Values.hosts.alertmanager | quote }}
+  gateways:
+    - {{ printf "%s/%s" .Values.ingress.gatewayNamespace .Values.ingress.gatewayName }}
+  http:
+    - route:
+        - destination:
+            host: alertmanager
+            port:
+              number: 9093

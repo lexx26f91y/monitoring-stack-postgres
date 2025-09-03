@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vmalert
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.vmalert.replicas }}
+  selector:
+    matchLabels:
+      app: vmalert
+  template:
+    metadata:
+      labels:
+        app: vmalert
+    spec:
+      imagePullSecrets:
+        - name: harbor-regcred
+      containers:
+        - name: vmalert
+          image: {{ printf "%s/%s:%s" .Values.imageRegistry .Values.vmalert.image .Values.vmalert.tag }}
+          args:
+            - "-datasource.url={{ .Values.vmalert.datasourceUrl }}"
+            - "-notifier.url={{ .Values.vmalert.notifierUrl }}"
+          ports:
+            - containerPort: 8880

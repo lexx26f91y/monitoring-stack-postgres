@@ -1,0 +1,13 @@
+apiVersion: v2
+name: monitoring-stack
+description: Grafana + Alertmanager + VictoriaMetrics (cluster) + Patroni/PostgreSQL
+version: 0.1.0
+appVersion: "1.0"
+keywords:
+  - grafana
+  - alertmanager
+  - victoriametrics
+  - patroni
+  - postgresql
+  - istio
+type: application

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vminsert
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.victoria.vminsert.replicas }}
+  selector:
+    matchLabels:
+      app: vminsert
+  template:
+    metadata:
+      labels:
+        app: vminsert
+    spec:
+      imagePullSecrets:
+        - name: harbor-regcred
+      containers:
+        - name: vminsert
+          image: {{ printf "%s/%s:%s" .Values.imageRegistry .Values.victoria.vminsert.image .Values.victoria.vminsert.tag }}
+          args:
+            - "-storageNode=vmstorage:8400"
+          ports:
+            - containerPort: 8480

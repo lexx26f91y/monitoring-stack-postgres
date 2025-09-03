@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vmselect
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.victoria.vmselect.replicas }}
+  selector:
+    matchLabels:
+      app: vmselect
+  template:
+    metadata:
+      labels:
+        app: vmselect
+    spec:
+      imagePullSecrets:
+        - name: harbor-regcred
+      containers:
+        - name: vmselect
+          image: {{ printf "%s/%s:%s" .Values.imageRegistry .Values.victoria.vmselect.image .Values.victoria.vmselect.tag }}
+          args:
+            - "-storageNode=vmstorage:8400"
+          ports:
+            - containerPort: 8481

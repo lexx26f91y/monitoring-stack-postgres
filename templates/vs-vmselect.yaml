@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: vmselect
+  namespace: {{ .Values.namespace }}
+spec:
+  hosts:
+    - {{ .Values.hosts.vmselect | quote }}
+  gateways:
+    - {{ printf "%s/%s" .Values.ingress.gatewayNamespace .Values.ingress.gatewayName }}
+  http:
+    - route:
+        - destination:
+            host: vmselect
+            port:
+              number: 8481
