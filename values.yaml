@@ -38,11 +38,16 @@ grafana:
 postgres:
   image: postgres
   tag: "16"
-  user: grafana
-  password: paR2GTM5CUpJd6pd
+  superuser:
+    username: postgres
+    password: SBJUJH4fnbstsvYy
+  grafanaDb:
+    user: grafana
+    password: paR2GTM5CUpJd6pd
+    database: grafana
   database: grafana
   storage:
-    size: 40Gi
+    size: 50Gi
 
 alertmanager:
   image: alertmanager

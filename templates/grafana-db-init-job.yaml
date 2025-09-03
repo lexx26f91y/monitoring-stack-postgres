@@ -9,16 +9,16 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: db-init
-          image: postgres:16
+          image: {{ printf "%s/%s:%s" .Values.imageRegistry .Values.postgres.image .Values.postgres.tag }}
           command:
             - /bin/sh
             - -c
             - |
               until pg_isready -h postgres -p 5432; do sleep 2; done
-              psql -h postgres -U {{ .Values.postgres.user }} -tc "SELECT 1 FROM pg_roles WHERE rolname='{{ .Values.grafana.db.user }}';" | grep -q 1 || \
-              psql -h postgres -U {{ .Values.postgres.user }} -c "CREATE USER {{ .Values.grafana.db.user }} WITH PASSWORD '{{ .Values.grafana.db.password }}';"
-              psql -h postgres -U {{ .Values.postgres.user }} -tc "SELECT 1 FROM pg_database WHERE datname='{{ .Values.grafana.db.database }}';" | grep -q 1 || \
-              psql -h postgres -U {{ .Values.postgres.user }} -c "CREATE DATABASE {{ .Values.grafana.db.database }} OWNER {{ .Values.grafana.db.user }};"
+              psql -h postgres -U {{ .Values.postgres.superuser.username }} -tc "SELECT 1 FROM pg_roles WHERE rolname='{{ .Values.postgres.grafanaDb.user }}';" | grep -q 1 || \
+              psql -h postgres -U {{ .Values.postgres.superuser.username }} -c "CREATE USER {{ .Values.postgres.grafanaDb.user }} WITH PASSWORD '{{ .Values.postgres.grafanaDb.password }}';"
+              psql -h postgres -U {{ .Values.postgres.superuser.username }} -tc "SELECT 1 FROM pg_database WHERE datname='{{ .Values.postgres.grafanaDb.database }}';" | grep -q 1 || \
+              psql -h postgres -U {{ .Values.postgres.superuser.username }} -c "CREATE DATABASE {{ .Values.postgres.grafanaDb.database }} OWNER {{ .Values.postgres.grafanaDb.user }};"
           env:
             - name: PGPASSWORD
-              value: {{ .Values.postgres.password }}
+              value: {{ .Values.postgres.superuser.password }}
