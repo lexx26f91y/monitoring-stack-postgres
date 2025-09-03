@@ -19,6 +19,8 @@ spec:
               psql -h postgres -U {{ .Values.postgres.superuser.username }} -c "CREATE USER {{ .Values.postgres.grafanaDb.user }} WITH PASSWORD '{{ .Values.postgres.grafanaDb.password }}';"
               psql -h postgres -U {{ .Values.postgres.superuser.username }} -tc "SELECT 1 FROM pg_database WHERE datname='{{ .Values.postgres.grafanaDb.database }}';" | grep -q 1 || \
               psql -h postgres -U {{ .Values.postgres.superuser.username }} -c "CREATE DATABASE {{ .Values.postgres.grafanaDb.database }} OWNER {{ .Values.postgres.grafanaDb.user }};"
+              psql -h postgres -U {{ .Values.postgres.superuser.username }} -c "ALTER DATABASE {{ .Values.postgres.grafanaDb.database }} OWNER TO {{ .Values.postgres.grafanaDb.user }};"
+              psql -h postgres -U {{ .Values.postgres.superuser.username }} -d {{ .Values.postgres.grafanaDb.database }} -c "GRANT ALL ON SCHEMA public TO {{ .Values.postgres.grafanaDb.user }};"
           env:
             - name: PGPASSWORD
               value: {{ .Values.postgres.superuser.password }}

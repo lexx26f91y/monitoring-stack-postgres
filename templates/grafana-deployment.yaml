@@ -46,3 +46,4 @@ spec:
             name: grafana-ini
         - name: datasources
           configMap:
+            name: grafana-datasources
