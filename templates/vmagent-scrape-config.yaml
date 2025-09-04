@@ -21,6 +21,8 @@ data:
       - job_name: 'cert-manager'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '10.111.13.94:9404'
@@ -43,6 +45,8 @@ data:
       - job_name: 'chrony'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.37:4245'
@@ -175,6 +179,8 @@ data:
       - job_name: 'chrony-master'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.41:4245'
@@ -183,6 +189,8 @@ data:
       - job_name: 'cilium-agent'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.41:4241'
@@ -347,6 +355,8 @@ data:
       - job_name: 'cilium-operator'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.41:4242'
@@ -499,6 +509,8 @@ data:
       - job_name: 'dex'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '10.111.13.2:5559'
@@ -523,6 +535,8 @@ data:
       - job_name: 'early-oom'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '10.111.15.14:8443'
@@ -671,6 +685,8 @@ data:
       - job_name: 'ebpf-exporter'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.42:4205'
@@ -803,6 +819,8 @@ data:
       - job_name: 'extended-monitoring-exporter'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '10.111.1.184:8081'
@@ -814,6 +832,8 @@ data:
       - job_name: 'gatekeeper'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '10.111.1.135:10354'
@@ -848,6 +868,8 @@ data:
       - job_name: 'gatekeeper-exporter-metrics'
         metrics_path: /exporter-metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '10.111.1.135:10354'
@@ -862,6 +884,8 @@ data:
       - job_name: 'kruise'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '10.111.16.226:10354'
@@ -896,6 +920,8 @@ data:
       - job_name: 'monitoring-ping'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.50:4289'
@@ -1028,6 +1054,8 @@ data:
       - job_name: 'node-exporter'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.43:4206'
@@ -1160,6 +1188,8 @@ data:
       - job_name: 'node-local-dns'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '10.111.1.102:4224'
@@ -1292,6 +1322,8 @@ data:
       - job_name: 'pod-reloader'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '10.111.1.220:9254'
@@ -1304,6 +1336,8 @@ data:
       - job_name: 'prometheus-longterm-federation-availability'
         metrics_path: /federate
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         params:
           match[]:
             - '{__name__="up", job="federate"}'
@@ -1318,6 +1352,8 @@ data:
       - job_name: 'prometheus-operator'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '10.111.11.251:8443'
@@ -1329,6 +1365,8 @@ data:
       - job_name: 'registry-packages-proxy'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.40:4219'
@@ -1357,6 +1395,8 @@ data:
       - job_name: 'vpa-controllers'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '10.111.9.110:4204'
@@ -1468,6 +1508,8 @@ data:
       - job_name: 'control-plane-proxy-etcd'
         metrics_path: /etcd/metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.40:4209'
@@ -1496,6 +1538,8 @@ data:
       - job_name: 'control-plane-proxy-scheduler'
         metrics_path: /scheduler/metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.40:4209'
@@ -1521,6 +1565,8 @@ data:
       - job_name: 'control-plane-proxy-controller-manager'
         metrics_path: /controller-manager/metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.40:4209'
@@ -1560,6 +1606,8 @@ data:
       - job_name: 'kube-apiserver'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.39:6443'
@@ -1568,6 +1616,8 @@ data:
       - job_name: 'kubelet'
         metrics_path: /metrics
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.34:10250'
@@ -1684,6 +1734,8 @@ data:
       - job_name: 'kubelet-cadvisor'
         metrics_path: /metrics/cadvisor
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.41:10250'
@@ -1800,6 +1852,8 @@ data:
       - job_name: 'kubelet-probes'
         metrics_path: /metrics/probes
         scheme: https
+        tls_config:
+          insecure_skip_verify: true
         static_configs:
           - targets:
               - '192.168.104.37:10250'
