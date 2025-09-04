@@ -3,9 +3,23 @@ kind: Ingress
 metadata:
   name: grafana-ingress
   namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
+    helm.sh/chart: monitoring-stack-{{ .Chart.Version }}
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/client_body_timeout: "1000"
+    nginx.ingress.kubernetes.io/client_header_timeout: "1000"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "1000"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "1000"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "1000"
+    nginx.ingress.kubernetes.io/server-snippet: underscores_in_headers on;
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
+  ingressClassName: nginx
   rules:
     - host: {{ .Values.hosts.grafana }}
       http:
