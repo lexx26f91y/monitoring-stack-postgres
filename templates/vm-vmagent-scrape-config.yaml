@@ -38,10 +38,10 @@ data:
         scheme: http
         static_configs:
           - targets:
-              - 'vmstorage:8400'
+              - 'vmstorage:8482'
             labels:
               job: victoriametrics-vmstorage
-              instance: vmstorage:8400
+              instance: vmstorage:8482
       - job_name: 'cert-manager'
         metrics_path: /metrics
         scheme: https
