@@ -41,9 +41,6 @@ data:
   {{- range $i := until $insertReplicas }}
                 - 'vminsert-{{ $i }}:8480'
   {{- end }}
-            labels:
-              job: victoriametrics-vminsert
-              instance: vminsert:8480
       - job_name: 'victoriametrics-vmselect'
         scrape_interval: {{ .Values.vmagent.scrapeInterval }}
         metrics_path: /metrics
@@ -64,9 +61,6 @@ data:
             - targets:
                 - 'vmagent-{{ $i }}:8429'
 {{- end }}
-            labels:
-              job: victoriametrics-vmselect
-              instance: vmselect:8481
       - job_name: 'victoriametrics-vmstorage'
         scrape_interval: {{ .Values.vmagent.scrapeInterval }}
         metrics_path: /metrics
@@ -77,9 +71,6 @@ data:
   {{- range $i := until $replicas }}
                 - 'vmstorage-{{ $i }}:8482'
   {{- end }}
-            labels:
-              job: victoriametrics-vmstorage
-              instance: vmstorage:8482
       - job_name: 'cert-manager'
         scrape_interval: {{ .Values.vmagent.scrapeInterval }}
         metrics_path: /metrics
