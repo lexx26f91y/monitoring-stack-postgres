@@ -22,7 +22,6 @@ spec:
           args:
             - "-retentionPeriod=90d"
             - "-storageDataPath=/storage"
-            - "-dedup.minScrapeInterval=1ms"
           ports:
             - name: http
               containerPort: 8482

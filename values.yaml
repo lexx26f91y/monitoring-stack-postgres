@@ -80,6 +80,7 @@ vmagent:
   image: vmagent
   tag: "v1.124.0"
   replicas: 3
+  scrapeInterval: 15s
   resources:
     requests:
       cpu: 200m
