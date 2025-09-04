@@ -91,6 +91,9 @@ vmagent:
   remoteWrite:
     enabled: true
     url: http://vminsert:8480/insert/0/prometheus
+  externalLabels:
+    cluster: monitoring-stack
+    env: ens
 
 vmalert:
   image: vmalert

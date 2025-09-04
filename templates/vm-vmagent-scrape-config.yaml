@@ -5,6 +5,11 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   prometheus.yaml: |
+    global:
+      {{- if .Values.vmagent.externalLabels }}
+      external_labels:
+        {{- toYaml .Values.vmagent.externalLabels | nindent 8 }}
+      {{- end }}
     scrape_configs:
       - job_name: 'kubernetes-pods'
         kubernetes_sd_configs:

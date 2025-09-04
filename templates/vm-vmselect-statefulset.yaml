@@ -43,3 +43,5 @@ spec:
             - "-dedup.minScrapeInterval=1ms"
           ports:
             - containerPort: 8481
+          resources:
+            {{- toYaml .Values.victoria.vmselect.resources | nindent 12 }}

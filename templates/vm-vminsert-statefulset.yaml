@@ -42,3 +42,5 @@ spec:
             - "-storageNode=vmstorage:8400"
           ports:
             - containerPort: 8480
+          resources:
+            {{- toYaml .Values.victoria.vminsert.resources | nindent 12 }}

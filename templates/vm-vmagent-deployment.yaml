@@ -24,6 +24,8 @@ spec:
             - "-promscrape.cluster.replicationFactor=2"
           ports:
             - containerPort: 8429
+          resources:
+            {{- toYaml .Values.vmagent.resources | nindent 12 }}
           readinessProbe:
             httpGet:
               path: /targets
