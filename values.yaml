@@ -84,7 +84,7 @@ vmagent:
   resources:
     requests:
       cpu: 200m
-      memory: 512Mi
+      memory: 1Gi
     limits:
       cpu: 2
       memory: 4Gi
@@ -118,7 +118,7 @@ victoria:
     replicas: 3
     resources:
       requests:
-        cpu: 500m
+        cpu: 1
         memory: 2Gi
       limits:
         cpu: 4
@@ -129,7 +129,7 @@ victoria:
     replicas: 3
     resources:
       requests:
-        cpu: 500m
+        cpu: 1
         memory: 2Gi
       limits:
         cpu: 4
@@ -140,7 +140,7 @@ victoria:
     replicas: 3
     resources:
       requests:
-        cpu: 500m
+        cpu: 1
         memory: 2Gi
       limits:
         cpu: 4
