@@ -20,5 +20,6 @@ spec:
           image: {{ printf "%s/%s:%s" .Values.imageRegistry .Values.victoria.vmselect.image .Values.victoria.vmselect.tag }}
           args:
             - "-storageNode=vmstorage:8401"
+            - "-dedup.minScrapeInterval=1ms"
           ports:
             - containerPort: 8481

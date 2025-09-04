@@ -7,6 +7,7 @@ storageClass: tatlin-sc
 hosts:
   grafana: grafana-demo.ens-proto.loc
   alertmanager: alertmanager.ens-proto.loc
+  vmagent: vmagent.ens-proto.loc
   vmselect: vmselect.ens-proto.loc
 
 ingress:
@@ -20,6 +21,13 @@ grafana:
   tag: "12.0.2"
   replicas: 1
   resources: {}
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
   persistence:
     size: 40Gi
   adminUser: admin
@@ -48,6 +56,15 @@ postgres:
   database: grafana
   storage:
     size: 50Gi
+      resources:
+        requests:
+          cpu: 500m
+          memory: 1Gi
+        limits:
+          cpu: 2
+          memory: 4Gi
+      storage:
+        size: 50Gi
 
 alertmanager:
   image: alertmanager
@@ -67,6 +84,13 @@ vmagent:
   tag: "v1.124.0"
   replicas: 3
   resources: {}
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
   config: {}
   remoteWrite:
     enabled: true
@@ -77,6 +101,13 @@ vmalert:
   tag: "v1.124.0"
   replicas: 1
   resources: {}
+        resources:
+          requests:
+            cpu: 200m
+            memory: 512Mi
+          limits:
+            cpu: 1
+            memory: 2Gi
   config: {}
   datasourceUrl: "http://vmselect:8481/select/0/prometheus"
   notifierUrl: "http://alertmanager:9093"
@@ -86,16 +117,34 @@ victoria:
     image: vminsert
     tag: "v1.124.0-cluster"
     replicas: 3
-    resources: {}
+        resources:
+          requests:
+            cpu: 500m
+            memory: 2Gi
+          limits:
+            cpu: 2
+            memory: 8Gi
   vmselect:
     image: vmselect
     tag: "v1.124.0-cluster"
     replicas: 3
-    resources: {}
+        resources:
+          requests:
+            cpu: 500m
+            memory: 2Gi
+          limits:
+            cpu: 2
+            memory: 8Gi
   vmstorage:
     image: vmstorage
     tag: "v1.124.0-cluster"
     replicas: 3
-    resources: {}
-    storage:
-      size: 300Gi
+        resources:
+          requests:
+            cpu: 500m
+            memory: 2Gi
+          limits:
+            cpu: 2
+            memory: 8Gi
+        storage:
+          size: 300Gi

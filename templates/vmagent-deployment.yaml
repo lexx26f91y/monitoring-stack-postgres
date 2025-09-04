@@ -19,8 +19,21 @@ spec:
           args:
             - "-remoteWrite.url={{ .Values.vmagent.remoteWrite.url }}"
             - "-promscrape.config=/etc/vmagent/prometheus.yaml"
+            - "-promscrape.cluster.mode=leader"
           ports:
             - containerPort: 8429
+          readinessProbe:
+            httpGet:
+              path: /targets
+              port: 8429
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /targets
+              port: 8429
+            initialDelaySeconds: 30
+            periodSeconds: 20
           volumeMounts:
             - name: scrape-config
               mountPath: /etc/vmagent

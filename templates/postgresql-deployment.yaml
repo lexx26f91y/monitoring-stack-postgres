@@ -25,6 +25,22 @@ spec:
               value: {{ .Values.postgres.superuser.password }}
           ports:
             - containerPort: 5432
+          readinessProbe:
+            exec:
+              command:
+                - pg_isready
+                - -U
+                - {{ .Values.postgres.superuser.username }}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            exec:
+              command:
+                - pg_isready
+                - -U
+                - {{ .Values.postgres.superuser.username }}
+            initialDelaySeconds: 30
+            periodSeconds: 20
           volumeMounts:
             - name: pgdata
               mountPath: /var/lib/postgresql/data
