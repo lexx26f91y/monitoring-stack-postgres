@@ -25,7 +25,10 @@ data:
         scheme: http
         static_configs:
           - targets:
-            - 'localhost:8429'
+              - 'localhost:8429'
+            labels:
+              job: victoriametrics-vmagent
+              instance: localhost:8429
       
       # Добавляй свои targets ниже, например:
       - job_name: 'victoriametrics-vminsert'
