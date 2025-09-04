@@ -20,28 +20,28 @@ data:
         scheme: http
         static_configs:
           - targets:
-              - 'localhost:8480'
+              - 'vminsert:8480'
             labels:
               job: victoriametrics-vminsert
-              instance: localhost:8480
+              instance: vminsert:8480
       - job_name: 'victoriametrics-vmselect'
         metrics_path: /metrics
         scheme: http
         static_configs:
           - targets:
-              - 'localhost:8481'
+              - 'vmselect:8481'
             labels:
               job: victoriametrics-vmselect
-              instance: localhost:8481
+              instance: vmselect:8481
       - job_name: 'victoriametrics-vmstorage'
         metrics_path: /metrics
         scheme: http
         static_configs:
           - targets:
-              - 'localhost:8400'
+              - 'vmstorage:8400'
             labels:
               job: victoriametrics-vmstorage
-              instance: localhost:8400
+              instance: vmstorage:8400
       - job_name: 'cert-manager'
         metrics_path: /metrics
         scheme: https
