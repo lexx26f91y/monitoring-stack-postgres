@@ -5,7 +5,7 @@ imageRegistry: dkp-harbor.ens-proto.loc/monitoring-stack
 storageClass: tatlin-sc
 
 hosts:
-  grafana: grafana.ens-proto.loc
+  grafana: grafana-demo.ens-proto.loc
   alertmanager: alertmanager.ens-proto.loc
   vmselect: vmselect.ens-proto.loc
 
@@ -78,6 +78,8 @@ vmalert:
   replicas: 1
   resources: {}
   config: {}
+  datasourceUrl: "http://vmselect:8481/select/0/prometheus"
+  notifierUrl: "http://alertmanager:9093"
 
 victoria:
   vminsert:
