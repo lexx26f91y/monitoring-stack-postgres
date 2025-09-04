@@ -56,8 +56,11 @@ data:
         metrics_path: /metrics
         scheme: http
         static_configs:
-          - targets:
-              - 'vmstorage:8482'
+            - targets:
+  {{- $replicas := .Values.victoria.vmstorage.replicas | int }}
+  {{- range $i := until $replicas }}
+                - 'vmstorage-{{ $i }}:8482'
+  {{- end }}
             labels:
               job: victoriametrics-vmstorage
               instance: vmstorage:8482
