@@ -17,3 +17,1960 @@ data:
       # - job_name: 'patroni'
       #   static_configs:
       #     - targets: ['patroni-leader:5432']
+
+      - job_name: 'cert-manager'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.13.94:9404'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.13.94:9404
+              job: cert-manager
+              namespace: d8-cert-manager
+              pod: cert-manager-b795c9658-4rrdb
+              tier: cluster
+          - targets:
+              - '10.111.11.159:9404'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.11.159:9404
+              job: cert-manager
+              namespace: d8-cert-manager
+              pod: cert-manager-b795c9658-nz9bp
+              tier: cluster
+      - job_name: 'chrony'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.37:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.37:4245
+              job: chrony
+              node: dkp-vxx-n04.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.34:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.34:4245
+              job: chrony
+              node: dkp-vxx-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.49:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.49:4245
+              job: chrony
+              node: dkp-fr-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.41:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.41:4245
+              job: chrony-master
+              node: dkp-mas-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.38:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.38:4245
+              job: chrony
+              node: dkp-vxx-n05.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.45:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.45:4245
+              job: chrony
+              node: dkp-mon-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.46:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.46:4245
+              job: chrony
+              node: dkp-mon-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.40:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.40:4245
+              job: chrony-master
+              node: dkp-mas-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.44:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.44:4245
+              job: chrony
+              node: dkp-sys-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.42:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.42:4245
+              job: chrony
+              node: dkp-sys-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.50:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.50:4245
+              job: chrony
+              node: dkp-fr-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.39:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.39:4245
+              job: chrony-master
+              node: dkp-mas-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.47:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.47:4245
+              job: chrony
+              node: dkp-mon-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.43:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.43:4245
+              job: chrony
+              node: dkp-sys-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.48:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.48:4245
+              job: chrony
+              node: dkp-fr-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.36:4245'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.36:4245
+              job: chrony
+              node: dkp-vxx-n03.ens-proto.loc
+              tier: cluster
+      - job_name: 'chrony-master'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.41:4245'
+              - '192.168.104.40:4245'
+              - '192.168.104.39:4245'
+      - job_name: 'cilium-agent'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.41:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.41:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-9l7j2
+              tier: cluster
+          - targets:
+              - '192.168.104.44:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.44:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-mmwhh
+              tier: cluster
+          - targets:
+              - '192.168.104.48:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.48:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-4rdfb
+              tier: cluster
+          - targets:
+              - '192.168.104.47:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.47:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-5ch6k
+              tier: cluster
+          - targets:
+              - '192.168.104.38:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.38:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-96gj2
+              tier: cluster
+          - targets:
+              - '192.168.104.40:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.40:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-rbb8b
+              tier: cluster
+          - targets:
+              - '192.168.104.45:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.45:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-vg2ll
+              tier: cluster
+          - targets:
+              - '192.168.104.39:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.39:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-2fxr6
+              tier: cluster
+          - targets:
+              - '192.168.104.49:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.49:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-zz7nf
+              tier: cluster
+          - targets:
+              - '192.168.104.50:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.50:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-cssx9
+              tier: cluster
+          - targets:
+              - '192.168.104.37:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.37:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-69fcc
+              tier: cluster
+          - targets:
+              - '192.168.104.46:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.46:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-wxlg4
+              tier: cluster
+          - targets:
+              - '192.168.104.43:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.43:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-s9g2x
+              tier: cluster
+          - targets:
+              - '192.168.104.36:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.36:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-vdmrr
+              tier: cluster
+          - targets:
+              - '192.168.104.34:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.34:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-7nfm6
+              tier: cluster
+          - targets:
+              - '192.168.104.42:4241'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.42:4241
+              job: cilium-agent
+              namespace: d8-cni-cilium
+              pod: agent-jx2px
+              tier: cluster
+      - job_name: 'cilium-operator'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.41:4242'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.41:4242
+              job: cilium-operator
+              namespace: d8-cni-cilium
+              pod: operator-7ff8c766bc-n6hsc
+              tier: cluster
+          - targets:
+              - '192.168.104.39:4242'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.39:4242
+              job: cilium-operator
+              namespace: d8-cni-cilium
+              pod: operator-7ff8c766bc-qjpz5
+              tier: cluster
+          - targets:
+              - '192.168.104.40:4242'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 192.168.104.40:4242
+              job: cilium-operator
+              namespace: d8-cni-cilium
+              pod: operator-7ff8c766bc-tp8vt
+              tier: cluster
+      - job_name: 'console-backend'
+        metrics_path: /metrics
+        scheme: http
+        static_configs:
+          - targets:
+              - '10.111.0.73:8992'
+            labels:
+              instance: 10.111.0.73:8992
+              job: console-backend
+              pod: backend-5bd9f5fc6c-fxqcn
+              tier: cluster
+          - targets:
+              - '10.111.9.237:8992'
+            labels:
+              instance: 10.111.9.237:8992
+              job: console-backend
+              pod: backend-5bd9f5fc6c-kg846
+              tier: cluster
+      - job_name: 'kube-dns'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.3.245:9154'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.3.245:9154
+              job: kube-dns
+              node: dkp-sys-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.2.210:9154'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.2.210:9154
+              job: kube-dns
+              node: dkp-sys-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.9.148:9154'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.9.148:9154
+              job: kube-dns
+              node: dkp-mas-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.0.194:9154'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.0.194:9154
+              job: kube-dns
+              node: dkp-mas-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.1.186:9154'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.1.186:9154
+              job: kube-dns
+              node: dkp-sys-n01.ens-proto.loc
+              tier: cluster
+      - job_name: 'deckhouse'
+        metrics_path: /metrics
+        scheme: http
+        static_configs:
+          - targets:
+              - '192.168.104.39:4222'
+            labels:
+              instance: 192.168.104.39:4222
+              job: deckhouse
+              pod: deckhouse-66745d8966-rggcd
+              scrape_source: self
+              tier: cluster
+          - targets:
+              - '192.168.104.40:4222'
+            labels:
+              instance: 192.168.104.40:4222
+              job: deckhouse
+              pod: deckhouse-66745d8966-dzrjc
+              scrape_source: self
+              tier: cluster
+          - targets:
+              - '192.168.104.41:4222'
+            labels:
+              instance: 192.168.104.41:4222
+              job: deckhouse
+              pod: deckhouse-66745d8966-4p9ml
+              scrape_source: self
+              tier: cluster
+      - job_name: 'deckhouse-hooks'
+        metrics_path: /metrics/hooks
+        scheme: http
+        static_configs:
+          - targets:
+              - '192.168.104.39:4222'
+            labels:
+              instance: 192.168.104.39:4222
+              job: deckhouse
+              pod: deckhouse-66745d8966-rggcd
+              scrape_source: hooks
+              tier: cluster
+          - targets:
+              - '192.168.104.41:4222'
+            labels:
+              instance: 192.168.104.41:4222
+              job: deckhouse
+              pod: deckhouse-66745d8966-4p9ml
+              scrape_source: hooks
+              tier: cluster
+          - targets:
+              - '192.168.104.40:4222'
+            labels:
+              instance: 192.168.104.40:4222
+              job: deckhouse
+              pod: deckhouse-66745d8966-dzrjc
+              scrape_source: hooks
+              tier: cluster
+      - job_name: 'dex'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.13.2:5559'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 10.111.13.2:5559
+              job: dex
+              namespace: d8-user-authn
+              pod: dex-586bd778fd-fkrkr
+              tier: cluster
+          - targets:
+              - '10.111.11.137:5559'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 10.111.11.137:5559
+              job: dex
+              namespace: d8-user-authn
+              pod: dex-586bd778fd-smzm9
+              tier: cluster
+      - job_name: 'early-oom'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.15.14:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.15.14:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-r6rbq
+              tier: cluster
+          - targets:
+              - '10.111.3.70:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.3.70:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-bqn54
+              tier: cluster
+          - targets:
+              - '10.111.8.149:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.8.149:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-67r5n
+              tier: cluster
+          - targets:
+              - '10.111.11.149:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.11.149:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-46xgc
+              tier: cluster
+          - targets:
+              - '10.111.7.174:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.7.174:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-dwnqj
+              tier: cluster
+          - targets:
+              - '10.111.0.92:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.0.92:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-svhql
+              tier: cluster
+          - targets:
+              - '10.111.4.156:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.4.156:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-4nd99
+              tier: cluster
+          - targets:
+              - '10.111.14.21:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.14.21:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-vfs8z
+              tier: cluster
+          - targets:
+              - '10.111.5.230:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.5.230:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-8gmbh
+              tier: cluster
+          - targets:
+              - '10.111.10.105:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.10.105:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-p9766
+              tier: cluster
+          - targets:
+              - '10.111.1.56:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.1.56:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-ws9cm
+              tier: cluster
+          - targets:
+              - '10.111.16.155:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.16.155:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-m29t2
+              tier: cluster
+          - targets:
+              - '10.111.13.93:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.13.93:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-9qxt7
+              tier: cluster
+          - targets:
+              - '10.111.2.152:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.2.152:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-68x58
+              tier: cluster
+          - targets:
+              - '10.111.9.242:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.9.242:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-grm4s
+              tier: cluster
+          - targets:
+              - '10.111.6.70:8443'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.6.70:8443
+              job: early-oom
+              namespace: d8-cloud-instance-manager
+              pod: early-oom-44vln
+              tier: cluster
+      - job_name: 'ebpf-exporter'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.42:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.42:4205
+              job: ebpf-exporter
+              node: dkp-sys-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.41:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.41:4205
+              job: ebpf-exporter
+              node: dkp-mas-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.50:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.50:4205
+              job: ebpf-exporter
+              node: dkp-fr-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.44:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.44:4205
+              job: ebpf-exporter
+              node: dkp-sys-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.47:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.47:4205
+              job: ebpf-exporter
+              node: dkp-mon-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.36:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.36:4205
+              job: ebpf-exporter
+              node: dkp-vxx-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.38:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.38:4205
+              job: ebpf-exporter
+              node: dkp-vxx-n05.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.45:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.45:4205
+              job: ebpf-exporter
+              node: dkp-mon-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.46:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.46:4205
+              job: ebpf-exporter
+              node: dkp-mon-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.48:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.48:4205
+              job: ebpf-exporter
+              node: dkp-fr-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.39:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.39:4205
+              job: ebpf-exporter
+              node: dkp-mas-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.49:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.49:4205
+              job: ebpf-exporter
+              node: dkp-fr-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.37:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.37:4205
+              job: ebpf-exporter
+              node: dkp-vxx-n04.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.40:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.40:4205
+              job: ebpf-exporter
+              node: dkp-mas-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.43:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.43:4205
+              job: ebpf-exporter
+              node: dkp-sys-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.34:4205'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.34:4205
+              job: ebpf-exporter
+              node: dkp-vxx-n01.ens-proto.loc
+              tier: cluster
+      - job_name: 'extended-monitoring-exporter'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.1.184:8081'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.1.184:8081
+              job: extended-monitoring-exporter
+              pod: extended-monitoring-exporter-6954cd7c4f-22dch
+      - job_name: 'gatekeeper'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.1.135:10354'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 10.111.1.135:10354
+              job: gatekeeper
+              namespace: d8-admission-policy-engine
+              pod: gatekeeper-audit-5b8cbd58d-hj864
+              tier: cluster
+          - targets:
+              - '10.111.13.172:10354'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 10.111.13.172:10354
+              job: gatekeeper
+              namespace: d8-admission-policy-engine
+              pod: gatekeeper-controller-manager-6c64b4989d-j27k9
+              tier: cluster
+          - targets:
+              - '10.111.14.8:10354'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 10.111.14.8:10354
+              job: gatekeeper
+              namespace: d8-admission-policy-engine
+              pod: gatekeeper-controller-manager-6c64b4989d-zshhp
+              tier: cluster
+      - job_name: 'gatekeeper-exporter-metrics'
+        metrics_path: /exporter-metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.1.135:10354'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 10.111.1.135:10354
+              job: gatekeeper
+              namespace: d8-admission-policy-engine
+              pod: gatekeeper-audit-5b8cbd58d-hj864
+              tier: cluster
+      - job_name: 'kruise'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.16.226:10354'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 10.111.16.226:10354
+              job: kruise
+              namespace: d8-ingress-nginx
+              pod: kruise-controller-manager-5c9bd6685-xjr2l
+              tier: cluster
+          - targets:
+              - '10.111.16.43:10354'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 10.111.16.43:10354
+              job: kruise
+              namespace: d8-ingress-nginx
+              pod: kruise-controller-manager-5c9bd6685-gkqph
+              tier: cluster
+          - targets:
+              - '10.111.0.137:10354'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https-metrics
+              instance: 10.111.0.137:10354
+              job: kruise
+              namespace: d8-ingress-nginx
+              pod: kruise-controller-manager-5c9bd6685-s8q4p
+              tier: cluster
+      - job_name: 'monitoring-ping'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.50:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.50:4289
+              job: monitoring-ping
+              node: dkp-fr-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.39:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.39:4289
+              job: monitoring-ping
+              node: dkp-mas-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.37:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.37:4289
+              job: monitoring-ping
+              node: dkp-vxx-n04.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.43:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.43:4289
+              job: monitoring-ping
+              node: dkp-sys-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.44:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.44:4289
+              job: monitoring-ping
+              node: dkp-sys-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.45:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.45:4289
+              job: monitoring-ping
+              node: dkp-mon-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.36:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.36:4289
+              job: monitoring-ping
+              node: dkp-vxx-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.48:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.48:4289
+              job: monitoring-ping
+              node: dkp-fr-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.34:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.34:4289
+              job: monitoring-ping
+              node: dkp-vxx-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.46:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.46:4289
+              job: monitoring-ping
+              node: dkp-mon-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.42:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.42:4289
+              job: monitoring-ping
+              node: dkp-sys-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.40:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.40:4289
+              job: monitoring-ping
+              node: dkp-mas-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.49:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.49:4289
+              job: monitoring-ping
+              node: dkp-fr-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.38:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.38:4289
+              job: monitoring-ping
+              node: dkp-vxx-n05.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.41:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.41:4289
+              job: monitoring-ping
+              node: dkp-mas-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.47:4289'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.47:4289
+              job: monitoring-ping
+              node: dkp-mon-n03.ens-proto.loc
+              tier: cluster
+      - job_name: 'node-exporter'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.43:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.43:4206
+              job: node-exporter
+              node: dkp-sys-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.39:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.39:4206
+              job: node-exporter
+              node: dkp-mas-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.45:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.45:4206
+              job: node-exporter
+              node: dkp-mon-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.41:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.41:4206
+              job: node-exporter
+              node: dkp-mas-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.46:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.46:4206
+              job: node-exporter
+              node: dkp-mon-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.49:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.49:4206
+              job: node-exporter
+              node: dkp-fr-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.48:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.48:4206
+              job: node-exporter
+              node: dkp-fr-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.50:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.50:4206
+              job: node-exporter
+              node: dkp-fr-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.34:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.34:4206
+              job: node-exporter
+              node: dkp-vxx-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.47:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.47:4206
+              job: node-exporter
+              node: dkp-mon-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.37:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.37:4206
+              job: node-exporter
+              node: dkp-vxx-n04.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.42:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.42:4206
+              job: node-exporter
+              node: dkp-sys-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.40:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.40:4206
+              job: node-exporter
+              node: dkp-mas-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.36:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.36:4206
+              job: node-exporter
+              node: dkp-vxx-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.38:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.38:4206
+              job: node-exporter
+              node: dkp-vxx-n05.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.44:4206'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.44:4206
+              job: node-exporter
+              node: dkp-sys-n03.ens-proto.loc
+              tier: cluster
+      - job_name: 'node-local-dns'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.1.102:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.1.102:4224
+              job: node-local-dns
+              node: dkp-sys-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.15.73:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.15.73:4224
+              job: node-local-dns
+              node: dkp-vxx-n05.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.8.199:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.8.199:4224
+              job: node-local-dns
+              node: dkp-mon-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.6.2:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.6.2:4224
+              job: node-local-dns
+              node: dkp-fr-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.16.220:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.16.220:4224
+              job: node-local-dns
+              node: dkp-mas-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.13.127:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.13.127:4224
+              job: node-local-dns
+              node: dkp-vxx-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.7.29:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.7.29:4224
+              job: node-local-dns
+              node: dkp-mon-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.10.237:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.10.237:4224
+              job: node-local-dns
+              node: dkp-mon-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.9.177:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.9.177:4224
+              job: node-local-dns
+              node: dkp-mas-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.4.37:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.4.37:4224
+              job: node-local-dns
+              node: dkp-fr-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.5.41:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.5.41:4224
+              job: node-local-dns
+              node: dkp-fr-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.11.226:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.11.226:4224
+              job: node-local-dns
+              node: dkp-vxx-n01.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.3.103:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.3.103:4224
+              job: node-local-dns
+              node: dkp-sys-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.2.243:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.2.243:4224
+              job: node-local-dns
+              node: dkp-sys-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.14.132:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.14.132:4224
+              job: node-local-dns
+              node: dkp-vxx-n04.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '10.111.0.133:4224'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.0.133:4224
+              job: node-local-dns
+              node: dkp-mas-n01.ens-proto.loc
+              tier: cluster
+      - job_name: 'pod-reloader'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.1.220:9254'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.1.220:9254
+              job: pod-reloader
+              node: dkp-sys-n01.ens-proto.loc
+              tier: cluster
+      - job_name: 'prometheus-longterm-federation-availability'
+        metrics_path: /federate
+        scheme: https
+        params:
+          match[]:
+            - '{__name__="up", job="federate"}'
+        static_configs:
+          - targets:
+              - '10.111.7.30:9090'
+            labels:
+              container: kube-rbac-proxy
+              instance: 10.111.7.30:9090
+              job: d8-monitoring/prometheus-longterm-federation-availability
+              pod: prometheus-longterm-0
+      - job_name: 'prometheus-operator'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.11.251:8443'
+            labels:
+              instance: 10.111.11.251:8443
+              job: prometheus-operator
+              pod: prometheus-operator-69bc997d6f-wp8x2
+              tier: cluster
+      - job_name: 'registry-packages-proxy'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.40:4219'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.40:4219
+              job: registry-packages-proxy
+              node: dkp-mas-n02.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.41:4219'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.41:4219
+              job: registry-packages-proxy
+              node: dkp-mas-n03.ens-proto.loc
+              tier: cluster
+          - targets:
+              - '192.168.104.39:4219'
+            labels:
+              container: kube-rbac-proxy
+              instance: 192.168.104.39:4219
+              job: registry-packages-proxy
+              node: dkp-mas-n01.ens-proto.loc
+              tier: cluster
+      - job_name: 'vpa-controllers'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.9.110:4204'
+            labels:
+              instance: 10.111.9.110:4204
+              job: vpa-admission-controller
+              pod: vpa-admission-controller-6d4c9f86d-tqhhk
+              tier: cluster
+          - targets:
+              - '10.111.1.238:4204'
+            labels:
+              instance: 10.111.1.238:4204
+              job: vpa-updater
+              pod: vpa-updater-84fd64dfdf-54cd4
+              tier: cluster
+          - targets:
+              - '10.111.1.189:4204'
+            labels:
+              instance: 10.111.1.189:4204
+              job: vpa-recommender
+              pod: vpa-recommender-594959c546-6z85b
+              tier: cluster
+          - targets:
+              - '10.111.16.87:4204'
+            labels:
+              instance: 10.111.16.87:4204
+              job: vpa-admission-controller
+              pod: vpa-admission-controller-6d4c9f86d-jmb6z
+              tier: cluster
+          - targets:
+              - '10.111.0.168:4204'
+            labels:
+              instance: 10.111.0.168:4204
+              job: vpa-admission-controller
+              pod: vpa-admission-controller-6d4c9f86d-v4ps4
+              tier: cluster
+      - job_name: 'kube-state-metrics-main'
+        metrics_path: /main/metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - 'kube-state-metrics.d8-monitoring.svc.cluster.local.:8080'
+            labels:
+              instance: kube-state-metrics.d8-monitoring.svc.cluster.local.:8080
+              job: kube-state-metrics
+              scrape_endpoint: main
+      - job_name: 'kube-state-metrics-self'
+        metrics_path: /self/metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - 'kube-state-metrics.d8-monitoring.svc.cluster.local.:8080'
+            labels:
+              instance: kube-state-metrics.d8-monitoring.svc.cluster.local.:8080
+              job: kube-state-metrics
+              scrape_endpoint: main
+      - job_name: 'aggregating-proxy'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.8.119:8443'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https
+              instance: 10.111.8.119:8443
+              job: aggregating-proxy
+              namespace: d8-monitoring
+              pod: aggregating-proxy-8fb55555-2x2zc
+              service: aggregating-proxy
+              tier: cluster
+          - targets:
+              - '10.111.10.106:8443'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https
+              instance: 10.111.10.106:8443
+              job: aggregating-proxy
+              namespace: d8-monitoring
+              pod: aggregating-proxy-8fb55555-v998d
+              service: aggregating-proxy
+              tier: cluster
+      - job_name: 'aggregating-proxy-promxy'
+        metrics_path: /promxy/metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.10.106:8443'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https
+              instance: 10.111.10.106:8443
+              job: aggregating-proxy
+              namespace: d8-monitoring
+              pod: aggregating-proxy-8fb55555-v998d
+              service: aggregating-proxy
+              tier: cluster
+          - targets:
+              - '10.111.8.119:8443'
+            labels:
+              container: kube-rbac-proxy
+              endpoint: https
+              instance: 10.111.8.119:8443
+              job: aggregating-proxy
+              namespace: d8-monitoring
+              pod: aggregating-proxy-8fb55555-2x2zc
+              service: aggregating-proxy
+              tier: cluster
+      - job_name: 'control-plane-proxy-etcd'
+        metrics_path: /etcd/metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.40:4209'
+            labels:
+              instance: 192.168.104.40:4209
+              job: kube-etcd3
+              node: dkp-mas-n02.ens-proto.loc
+              service: control-plane-proxy
+              tier: cluster
+          - targets:
+              - '192.168.104.39:4209'
+            labels:
+              instance: 192.168.104.39:4209
+              job: kube-etcd3
+              node: dkp-mas-n01.ens-proto.loc
+              service: control-plane-proxy
+              tier: cluster
+          - targets:
+              - '192.168.104.41:4209'
+            labels:
+              instance: 192.168.104.41:4209
+              job: kube-etcd3
+              node: dkp-mas-n03.ens-proto.loc
+              service: control-plane-proxy
+              tier: cluster
+      - job_name: 'control-plane-proxy-scheduler'
+        metrics_path: /scheduler/metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.40:4209'
+            labels:
+              instance: 192.168.104.40:4209
+              job: kube-scheduler
+              service: control-plane-proxy
+              tier: cluster
+          - targets:
+              - '192.168.104.39:4209'
+            labels:
+              instance: 192.168.104.39:4209
+              job: kube-scheduler
+              service: control-plane-proxy
+              tier: cluster
+          - targets:
+              - '192.168.104.41:4209'
+            labels:
+              instance: 192.168.104.41:4209
+              job: kube-scheduler
+              service: control-plane-proxy
+              tier: cluster
+      - job_name: 'control-plane-proxy-controller-manager'
+        metrics_path: /controller-manager/metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.40:4209'
+            labels:
+              instance: 192.168.104.40:4209
+              job: kube-controller-manager
+              service: control-plane-proxy
+              tier: cluster
+          - targets:
+              - '192.168.104.39:4209'
+            labels:
+              instance: 192.168.104.39:4209
+              job: kube-controller-manager
+              service: control-plane-proxy
+              tier: cluster
+          - targets:
+              - '192.168.104.41:4209'
+            labels:
+              instance: 192.168.104.41:4209
+              job: kube-controller-manager
+              service: control-plane-proxy
+              tier: cluster
+      - job_name: 'grafana-v10'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.8.254:8443'
+              - '10.111.10.164:8443'
+      - job_name: 'istiod'
+        metrics_path: /metrics
+        scheme: http
+        static_configs:
+          - targets:
+              - '10.111.9.48:15014'
+              - '10.111.16.67:15014'
+      - job_name: 'kube-apiserver'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.39:6443'
+              - '192.168.104.40:6443'
+              - '192.168.104.41:6443'
+      - job_name: 'kubelet'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.34:10250'
+            labels:
+              instance: 192.168.104.34:10250
+              job: kubelet
+              node: dkp-wrk-n01.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.48:10250'
+            labels:
+              instance: 192.168.104.48:10250
+              job: kubelet
+              node: dkp-wrk-n02.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.49:10250'
+            labels:
+              instance: 192.168.104.49:10250
+              job: kubelet
+              node: dkp-wrk-n03.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.50:10250'
+            labels:
+              instance: 192.168.104.50:10250
+              job: kubelet
+              node: dkp-wrk-n04.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.44:10250'
+            labels:
+              instance: 192.168.104.44:10250
+              job: kubelet
+              node: dkp-wrk-n05.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.37:10250'
+            labels:
+              instance: 192.168.104.37:10250
+              job: kubelet
+              node: dkp-wrk-n06.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.39:10250'
+            labels:
+              instance: 192.168.104.39:10250
+              job: kubelet
+              node: dkp-mas-n01.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.46:10250'
+            labels:
+              instance: 192.168.104.46:10250
+              job: kubelet
+              node: dkp-wrk-n07.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.41:10250'
+            labels:
+              instance: 192.168.104.41:10250
+              job: kubelet
+              node: dkp-mas-n03.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.42:10250'
+            labels:
+              instance: 192.168.104.42:10250
+              job: kubelet
+              node: dkp-wrk-n08.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.40:10250'
+            labels:
+              instance: 192.168.104.40:10250
+              job: kubelet
+              node: dkp-mas-n02.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.43:10250'
+            labels:
+              instance: 192.168.104.43:10250
+              job: kubelet
+              node: dkp-wrk-n09.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.45:10250'
+            labels:
+              instance: 192.168.104.45:10250
+              job: kubelet
+              node: dkp-wrk-n10.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.38:10250'
+            labels:
+              instance: 192.168.104.38:10250
+              job: kubelet
+              node: dkp-wrk-n11.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.36:10250'
+            labels:
+              instance: 192.168.104.36:10250
+              job: kubelet
+              node: dkp-wrk-n12.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.47:10250'
+            labels:
+              instance: 192.168.104.47:10250
+              job: kubelet
+              node: dkp-wrk-n13.ens-proto.loc
+              tier: node
+      - job_name: 'kubelet-cadvisor'
+        metrics_path: /metrics/cadvisor
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.41:10250'
+            labels:
+              instance: 192.168.104.41:10250
+              job: kubelet-cadvisor
+              node: dkp-mas-n03.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.42:10250'
+            labels:
+              instance: 192.168.104.42:10250
+              job: kubelet-cadvisor
+              node: dkp-wrk-n08.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.40:10250'
+            labels:
+              instance: 192.168.104.40:10250
+              job: kubelet-cadvisor
+              node: dkp-mas-n02.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.48:10250'
+            labels:
+              instance: 192.168.104.48:10250
+              job: kubelet-cadvisor
+              node: dkp-wrk-n02.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.49:10250'
+            labels:
+              instance: 192.168.104.49:10250
+              job: kubelet-cadvisor
+              node: dkp-wrk-n03.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.36:10250'
+            labels:
+              instance: 192.168.104.36:10250
+              job: kubelet-cadvisor
+              node: dkp-wrk-n12.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.47:10250'
+            labels:
+              instance: 192.168.104.47:10250
+              job: kubelet-cadvisor
+              node: dkp-wrk-n13.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.46:10250'
+            labels:
+              instance: 192.168.104.46:10250
+              job: kubelet-cadvisor
+              node: dkp-wrk-n07.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.44:10250'
+            labels:
+              instance: 192.168.104.44:10250
+              job: kubelet-cadvisor
+              node: dkp-wrk-n05.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.43:10250'
+            labels:
+              instance: 192.168.104.43:10250
+              job: kubelet-cadvisor
+              node: dkp-wrk-n09.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.45:10250'
+            labels:
+              instance: 192.168.104.45:10250
+              job: kubelet-cadvisor
+              node: dkp-wrk-n10.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.50:10250'
+            labels:
+              instance: 192.168.104.50:10250
+              job: kubelet-cadvisor
+              node: dkp-wrk-n04.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.38:10250'
+            labels:
+              instance: 192.168.104.38:10250
+              job: kubelet-cadvisor
+              node: dkp-wrk-n11.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.39:10250'
+            labels:
+              instance: 192.168.104.39:10250
+              job: kubelet-cadvisor
+              node: dkp-mas-n01.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.34:10250'
+            labels:
+              instance: 192.168.104.34:10250
+              job: kubelet-cadvisor
+              node: dkp-wrk-n01.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.37:10250'
+            labels:
+              instance: 192.168.104.37:10250
+              job: kubelet-cadvisor
+              node: dkp-wrk-n06.ens-proto.loc
+              tier: node
+      - job_name: 'kubelet-probes'
+        metrics_path: /metrics/probes
+        scheme: https
+        static_configs:
+          - targets:
+              - '192.168.104.37:10250'
+            labels:
+              instance: 192.168.104.37:10250
+              job: kubelet-probes
+              node: dkp-wrk-n06.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.45:10250'
+            labels:
+              instance: 192.168.104.45:10250
+              job: kubelet-probes
+              node: dkp-wrk-n10.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.48:10250'
+            labels:
+              instance: 192.168.104.48:10250
+              job: kubelet-probes
+              node: dkp-wrk-n02.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.41:10250'
+            labels:
+              instance: 192.168.104.41:10250
+              job: kubelet-probes
+              node: dkp-mas-n03.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.34:10250'
+            labels:
+              instance: 192.168.104.34:10250
+              job: kubelet-probes
+              node: dkp-wrk-n01.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.39:10250'
+            labels:
+              instance: 192.168.104.39:10250
+              job: kubelet-probes
+              node: dkp-mas-n01.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.46:10250'
+            labels:
+              instance: 192.168.104.46:10250
+              job: kubelet-probes
+              node: dkp-wrk-n07.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.36:10250'
+            labels:
+              instance: 192.168.104.36:10250
+              job: kubelet-probes
+              node: dkp-wrk-n12.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.47:10250'
+            labels:
+              instance: 192.168.104.47:10250
+              job: kubelet-probes
+              node: dkp-wrk-n13.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.42:10250'
+            labels:
+              instance: 192.168.104.42:10250
+              job: kubelet-probes
+              node: dkp-wrk-n08.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.44:10250'
+            labels:
+              instance: 192.168.104.44:10250
+              job: kubelet-probes
+              node: dkp-wrk-n05.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.50:10250'
+            labels:
+              instance: 192.168.104.50:10250
+              job: kubelet-probes
+              node: dkp-wrk-n04.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.43:10250'
+            labels:
+              instance: 192.168.104.43:10250
+              job: kubelet-probes
+              node: dkp-wrk-n09.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.49:10250'
+            labels:
+              instance: 192.168.104.49:10250
+              job: kubelet-probes
+              node: dkp-wrk-n03.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.38:10250'
+            labels:
+              instance: 192.168.104.38:10250
+              job: kubelet-probes
+              node: dkp-wrk-n11.ens-proto.loc
+              tier: node
+          - targets:
+              - '192.168.104.40:10250'
+            labels:
+              instance: 192.168.104.40:10250
+              job: kubelet-probes
+              node: dkp-mas-n02.ens-proto.loc
+              tier: node
+      - job_name: 'memcached'
+        metrics_path: /metrics
+        scheme: http
+        static_configs:
+          - targets:
+              - '10.111.7.44:9150'
+            labels:
+              instance: 10.111.7.44:9150
+              job: memcached
+              service: memcached
+              tier: infra
+          - targets:
+              - '10.111.8.148:9150'
+            labels:
+              instance: 10.111.8.148:9150
+              job: memcached
+              service: memcached
+              tier: infra
+      - job_name: 'prometheus'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.10.168:9090'
+            labels:
+              instance: 10.111.10.168:9090
+              job: prometheus
+              service: prometheus
+              tier: infra
+          - targets:
+              - '10.111.8.73:9090'
+            labels:
+              instance: 10.111.8.73:9090
+              job: prometheus
+              service: prometheus
+              tier: infra
+          - targets:
+              - '10.111.7.30:9090'
+            labels:
+              instance: 10.111.7.30:9090
+              job: prometheus
+              service: prometheus
+              tier: infra
+      - job_name: 'trickster'
+        metrics_path: /metrics
+        scheme: https
+        static_configs:
+          - targets:
+              - '10.111.8.23:8443'
+            labels:
+              instance: 10.111.8.23:8443
+              job: trickster
+              service: trickster
+              tier: infra
+          - targets:
+              - '10.111.10.55:8443'
+            labels:
+              instance: 10.111.10.55:8443
+              job: trickster
+              service: trickster
+              tier: infra
