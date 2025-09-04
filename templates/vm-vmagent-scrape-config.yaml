@@ -19,13 +19,13 @@ data:
             action: keep
             regex: vmagent
 
-        - job_name: 'vmagent-self'
-          scrape_interval: {{ .Values.vmagent.scrapeInterval }}
-          metrics_path: /metrics
-          scheme: http
-          static_configs:
-            - targets:
-                - 'localhost:8429'
+      - job_name: 'vmagent-self'
+        scrape_interval: {{ .Values.vmagent.scrapeInterval }}
+        metrics_path: /metrics
+        scheme: http
+        static_configs:
+          - targets:
+            - 'localhost:8429'
       
       # Добавляй свои targets ниже, например:
       - job_name: 'victoriametrics-vminsert'
