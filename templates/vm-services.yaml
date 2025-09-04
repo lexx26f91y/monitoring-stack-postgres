@@ -10,6 +10,23 @@ spec:
     - name: http
       port: 8480
       targetPort: 8480
+{{- $insertReplicas := .Values.victoria.vminsert.replicas | int }}
+{{- range $i := until $insertReplicas }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vminsert-{{ $i }}
+  namespace: {{ $.Values.namespace }}
+spec:
+  clusterIP: None
+  selector:
+    statefulset.kubernetes.io/pod-name: vminsert-{{ $i }}
+  ports:
+    - name: http
+      port: 8480
+      targetPort: 8480
+{{- end }}
 ---
 apiVersion: v1
 kind: Service
@@ -23,6 +40,23 @@ spec:
     - name: http
       port: 8481
       targetPort: 8481
+{{- $selectReplicas := .Values.victoria.vmselect.replicas | int }}
+{{- range $i := until $selectReplicas }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vmselect-{{ $i }}
+  namespace: {{ $.Values.namespace }}
+spec:
+  clusterIP: None
+  selector:
+    statefulset.kubernetes.io/pod-name: vmselect-{{ $i }}
+  ports:
+    - name: http
+      port: 8481
+      targetPort: 8481
+{{- end }}
 ---
 apiVersion: v1
 kind: Service
@@ -42,6 +76,23 @@ spec:
     - name: vmselect
       port: 8401
       targetPort: 8401
+{{- $agentReplicas := .Values.vmagent.replicas | int }}
+{{- range $i := until $agentReplicas }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vmagent-{{ $i }}
+  namespace: {{ $.Values.namespace }}
+spec:
+  clusterIP: None
+  selector:
+    statefulset.kubernetes.io/pod-name: vmagent-{{ $i }}
+  ports:
+    - name: http
+      port: 8429
+      targetPort: 8429
+{{- end }}
 
 {{- $replicas := .Values.victoria.vmstorage.replicas | int }}
 {{- range $i := until $replicas }}

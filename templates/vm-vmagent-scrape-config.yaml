@@ -36,8 +36,11 @@ data:
         metrics_path: /metrics
         scheme: http
         static_configs:
-          - targets:
-              - 'vminsert:8480'
+            - targets:
+  {{- $insertReplicas := .Values.victoria.vminsert.replicas | int }}
+  {{- range $i := until $insertReplicas }}
+                - 'vminsert-{{ $i }}:8480'
+  {{- end }}
             labels:
               job: victoriametrics-vminsert
               instance: vminsert:8480
@@ -46,8 +49,21 @@ data:
         metrics_path: /metrics
         scheme: http
         static_configs:
-          - targets:
-              - 'vmselect:8481'
+            - targets:
+  {{- $selectReplicas := .Values.victoria.vmselect.replicas | int }}
+  {{- range $i := until $selectReplicas }}
+                - 'vmselect-{{ $i }}:8481'
+  {{- end }}
+      - job_name: 'victoriametrics-vmagent'
+        scrape_interval: {{ .Values.vmagent.scrapeInterval }}
+        metrics_path: /metrics
+        scheme: http
+        static_configs:
+{{- $agentReplicas := .Values.vmagent.replicas | int }}
+{{- range $i := until $agentReplicas }}
+            - targets:
+                - 'vmagent-{{ $i }}:8429'
+{{- end }}
             labels:
               job: victoriametrics-vmselect
               instance: vmselect:8481

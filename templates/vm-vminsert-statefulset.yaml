@@ -24,8 +24,8 @@ spec:
         - name: vminsert
           image: {{ printf "%s/%s:%s" .Values.imageRegistry .Values.victoria.vminsert.image .Values.victoria.vminsert.tag }}
           args:
-  {{- $replicas := .Values.victoria.vmstorage.replicas | int }}
-  {{- range $i := until $replicas }}
+  {{- $storageReplicas := .Values.victoria.vmstorage.replicas | int }}
+  {{- range $i := until $storageReplicas }}
               - "-storageNode=vmstorage-{{ $i }}:8400"
   {{- end }}
           ports:

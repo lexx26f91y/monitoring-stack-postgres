@@ -22,7 +22,10 @@ spec:
         - name: vmagent
           image: {{ printf "%s/%s:%s" .Values.imageRegistry .Values.vmagent.image .Values.vmagent.tag }}
           args:
-            - "-remoteWrite.url={{ .Values.vmagent.remoteWrite.url }}"
+{{- $insertReplicas := .Values.victoria.vminsert.replicas | int }}
+{{- range $i := until $insertReplicas }}
+            - "-remoteWrite.url=http://vminsert-{{ $i }}:8480/insert/0/prometheus"
+{{- end }}
             - "-promscrape.config=/etc/vmagent/prometheus.yaml"
           ports:
             - containerPort: 8429
