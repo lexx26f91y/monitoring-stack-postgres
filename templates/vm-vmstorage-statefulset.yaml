@@ -14,6 +14,10 @@ spec:
       labels:
         app: vmstorage
     spec:
+      affinity:
+        {{- toYaml .Values.victoria.vmstorage.affinity | nindent 8 }}
+      topologySpreadConstraints:
+        {{- toYaml .Values.victoria.vmstorage.topologySpreadConstraints | nindent 8 }}
       imagePullSecrets:
         - name: harbor-regcred
       containers:

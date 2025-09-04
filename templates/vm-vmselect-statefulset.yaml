@@ -15,24 +15,9 @@ spec:
         app: vmselect
     spec:
       affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - vmselect
-                topologyKey: kubernetes.io/hostname
+        {{- toYaml .Values.victoria.vmselect.affinity | nindent 8 }}
       topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
-          whenUnsatisfiable: ScheduleAnyway
-          labelSelector:
-            matchLabels:
-              app: vmselect
+        {{- toYaml .Values.victoria.vmselect.topologySpreadConstraints | nindent 8 }}
       imagePullSecrets:
         - name: harbor-regcred
       containers:

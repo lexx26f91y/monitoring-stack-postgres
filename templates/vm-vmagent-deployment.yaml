@@ -14,6 +14,10 @@ spec:
       labels:
         app: vmagent
     spec:
+      affinity:
+        {{- toYaml .Values.vmagent.affinity | nindent 8 }}
+      topologySpreadConstraints:
+        {{- toYaml .Values.vmagent.topologySpreadConstraints | nindent 8 }}
       containers:
         - name: vmagent
           image: {{ printf "%s/%s:%s" .Values.imageRegistry .Values.vmagent.image .Values.vmagent.tag }}

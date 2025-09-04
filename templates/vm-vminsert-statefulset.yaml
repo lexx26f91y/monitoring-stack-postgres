@@ -15,24 +15,9 @@ spec:
         app: vminsert
     spec:
       affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - vminsert
-                topologyKey: kubernetes.io/hostname
+        {{- toYaml .Values.victoria.vminsert.affinity | nindent 8 }}
       topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
-          whenUnsatisfiable: ScheduleAnyway
-          labelSelector:
-            matchLabels:
-              app: vminsert
+        {{- toYaml .Values.victoria.vminsert.topologySpreadConstraints | nindent 8 }}
       imagePullSecrets:
         - name: harbor-regcred
       containers:
