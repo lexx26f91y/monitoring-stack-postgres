@@ -19,7 +19,6 @@ spec:
           args:
             - "-remoteWrite.url={{ .Values.vmagent.remoteWrite.url }}"
             - "-promscrape.config=/etc/vmagent/prometheus.yaml"
-            - "-promscrape.cluster.mode=leader"
           ports:
             - containerPort: 8429
           readinessProbe:
