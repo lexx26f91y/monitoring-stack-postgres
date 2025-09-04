@@ -922,7 +922,7 @@ data:
         scheme: https
         tls_config:
           insecure_skip_verify: true
-  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
         static_configs:
           - targets:
               - '192.168.104.50:4289'
@@ -1057,7 +1057,7 @@ data:
         scheme: https
         tls_config:
           insecure_skip_verify: true
-  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
         static_configs:
           - targets:
               - '192.168.104.43:4206'
@@ -1192,7 +1192,7 @@ data:
         scheme: https
         tls_config:
           insecure_skip_verify: true
-  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
         static_configs:
           - targets:
               - '10.111.1.102:4224'
@@ -1327,7 +1327,7 @@ data:
         scheme: https
         tls_config:
           insecure_skip_verify: true
-  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
         static_configs:
           - targets:
               - '10.111.1.220:9254'
@@ -1342,7 +1342,7 @@ data:
         scheme: https
         tls_config:
           insecure_skip_verify: true
-  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
         params:
           match[]:
             - '{__name__="up", job="federate"}'
@@ -1359,7 +1359,7 @@ data:
         scheme: https
         tls_config:
           insecure_skip_verify: true
-  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
         static_configs:
           - targets:
               - '10.111.11.251:8443'
@@ -1373,7 +1373,7 @@ data:
         scheme: https
         tls_config:
           insecure_skip_verify: true
-  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
         static_configs:
           - targets:
               - '192.168.104.40:4219'
@@ -1404,7 +1404,7 @@ data:
         scheme: https
         tls_config:
           insecure_skip_verify: true
-  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
         static_configs:
           - targets:
               - '10.111.9.110:4204'
@@ -1626,7 +1626,7 @@ data:
         scheme: https
         tls_config:
           insecure_skip_verify: true
-  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
         static_configs:
           - targets:
               - '192.168.104.34:10250'
@@ -1745,7 +1745,7 @@ data:
         scheme: https
         tls_config:
           insecure_skip_verify: true
-  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
         static_configs:
           - targets:
               - '192.168.104.41:10250'
@@ -1864,7 +1864,7 @@ data:
         scheme: https
         tls_config:
           insecure_skip_verify: true
-  bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
         static_configs:
           - targets:
               - '192.168.104.37:10250'
