@@ -1,3 +1,6 @@
+######################################################################
+# vminsert сервис (общий)
+######################################################################
 apiVersion: v1
 kind: Service
 metadata:
@@ -11,6 +14,9 @@ spec:
       port: 8480
       targetPort: 8480
 {{- $insertReplicas := .Values.victoria.vminsert.replicas | int }}
+######################################################################
+# vminsert headless сервисы (по pod'ам)
+######################################################################
 {{- range $i := until $insertReplicas }}
 ---
 apiVersion: v1
@@ -27,7 +33,10 @@ spec:
       port: 8480
       targetPort: 8480
 {{- end }}
----
+
+######################################################################
+# vmselect сервис (общий)
+######################################################################
 apiVersion: v1
 kind: Service
 metadata:
@@ -41,6 +50,9 @@ spec:
       port: 8481
       targetPort: 8481
 {{- $selectReplicas := .Values.victoria.vmselect.replicas | int }}
+######################################################################
+# vmselect headless сервисы (по pod'ам)
+######################################################################
 {{- range $i := until $selectReplicas }}
 ---
 apiVersion: v1
@@ -57,7 +69,10 @@ spec:
       port: 8481
       targetPort: 8481
 {{- end }}
----
+
+######################################################################
+# vmstorage сервис (общий)
+######################################################################
 apiVersion: v1
 kind: Service
 metadata:
@@ -77,6 +92,9 @@ spec:
       port: 8401
       targetPort: 8401
 {{- $agentReplicas := .Values.vmagent.replicas | int }}
+######################################################################
+# vmagent headless сервисы (по pod'ам)
+######################################################################
 {{- range $i := until $agentReplicas }}
 ---
 apiVersion: v1
@@ -95,6 +113,9 @@ spec:
 {{- end }}
 
 {{- $replicas := .Values.victoria.vmstorage.replicas | int }}
+######################################################################
+# vmstorage headless сервисы (по pod'ам)
+######################################################################
 {{- range $i := until $replicas }}
 ---
 apiVersion: v1
