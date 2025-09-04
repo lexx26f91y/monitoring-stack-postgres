@@ -13,11 +13,35 @@ data:
           - source_labels: [__meta_kubernetes_pod_label_app]
             action: keep
             regex: vmagent
+      
       # Добавляй свои targets ниже, например:
-      # - job_name: 'patroni'
-      #   static_configs:
-      #     - targets: ['patroni-leader:5432']
-
+      - job_name: 'victoriametrics-vminsert'
+        metrics_path: /metrics
+        scheme: http
+        static_configs:
+          - targets:
+              - 'localhost:8480'
+            labels:
+              job: victoriametrics-vminsert
+              instance: localhost:8480
+      - job_name: 'victoriametrics-vmselect'
+        metrics_path: /metrics
+        scheme: http
+        static_configs:
+          - targets:
+              - 'localhost:8481'
+            labels:
+              job: victoriametrics-vmselect
+              instance: localhost:8481
+      - job_name: 'victoriametrics-vmstorage'
+        metrics_path: /metrics
+        scheme: http
+        static_configs:
+          - targets:
+              - 'localhost:8400'
+            labels:
+              job: victoriametrics-vmstorage
+              instance: localhost:8400
       - job_name: 'cert-manager'
         metrics_path: /metrics
         scheme: https

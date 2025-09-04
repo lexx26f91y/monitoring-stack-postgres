@@ -1,9 +1,10 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: vminsert
   namespace: {{ .Values.namespace }}
 spec:
+  serviceName: vminsert
   replicas: {{ .Values.victoria.vminsert.replicas }}
   selector:
     matchLabels:

@@ -1,9 +1,10 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: vmagent
   namespace: {{ .Values.namespace }}
 spec:
+  serviceName: vmagent
   replicas: {{ .Values.vmagent.replicas }}
   selector:
     matchLabels:
