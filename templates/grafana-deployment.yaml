@@ -49,6 +49,9 @@ spec:
             - name: datasources
               mountPath: /etc/grafana/provisioning/datasources/datasources.yaml
               subPath: datasources.yaml
+            - name: home-dashboard
+              mountPath: /var/lib/grafana/dashboards/home.json
+              subPath: home.json
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -59,3 +62,6 @@ spec:
         - name: datasources
           configMap:
             name: grafana-datasources
+        - name: home-dashboard
+          configMap:
+            name: grafana-home-dashboard

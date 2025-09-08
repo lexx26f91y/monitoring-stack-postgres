@@ -6,6 +6,14 @@ rules:
   - apiGroups: [""]
     resources: ["nodes/metrics"]
     verbs: ["get"]
+  - apiGroups: ["apps"]
+    resources: ["deployments", "deployments/prometheus-metrics"]
+    verbs: ["get"]
+  - apiGroups: ["apps"]
+    resources: ["daemonsets", "daemonsets/prometheus-metrics"]
+    verbs: ["get"]
+  - nonResourceURLs: ["/*"]
+    verbs: ["get"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding

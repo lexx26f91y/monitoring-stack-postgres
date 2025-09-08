@@ -1,0 +1,18 @@
+{
+  "id": null,
+  "uid": "home",
+  "title": "Home",
+  "tags": [],
+  "timezone": "browser",
+  "schemaVersion": 36,
+  "version": 1,
+  "refresh": "5s",
+  "panels": [
+    {
+      "type": "text",
+      "title": "Welcome",
+      "gridPos": { "x": 0, "y": 0, "w": 24, "h": 4 },
+      "options": { "content": "Welcome to Grafana!" }
+    }
+  ]
+}
