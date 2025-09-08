@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: grafana-data
+  name: grafana-data-new
   namespace: {{ .Values.namespace }}
 spec:
   accessModes: [ "ReadWriteOnce" ]

@@ -55,7 +55,7 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: grafana-data
+            claimName: grafana-data-new
         - name: ini
           configMap:
             name: grafana-ini

@@ -4,7 +4,7 @@ metadata:
   name: postgres
   namespace: {{ .Values.namespace }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.postgres.replicas }}
   selector:
     matchLabels:
       app: postgres
@@ -47,4 +47,4 @@ spec:
       volumes:
         - name: pgdata
           persistentVolumeClaim:
-            claimName: pg-db-pvc
+            claimName: pg-db-pvc-new

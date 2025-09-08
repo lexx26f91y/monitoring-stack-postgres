@@ -45,6 +45,7 @@ grafana:
 postgres:
   image: postgres
   tag: "16"
+  replicas: 1
   superuser:
     username: postgres
     password: SBJUJH4fnbstsvYy
