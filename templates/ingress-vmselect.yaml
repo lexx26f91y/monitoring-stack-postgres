@@ -1,0 +1,44 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vmselect-ingress
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/instance: vmselect
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: vmselect
+    app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
+    helm.sh/chart: monitoring-stack-{{ .Chart.Version }}
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/client_body_timeout: "1000"
+    nginx.ingress.kubernetes.io/client_header_timeout: "1000"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "1000"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "1000"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "1000"
+    nginx.ingress.kubernetes.io/server-snippet: underscores_in_headers on;
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($request_uri = "/") {
+        return 302 /select/0/;
+      }
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.hosts.vmselect }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vmselect
+                port:
+                  number: 8481
+          - path: /select/0/
+            pathType: Prefix
+            backend:
+              service:
+                name: vmselect
+                port:
+                  number: 8481
