@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vminsert-ingress
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/instance: vminsert
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: vminsert
+    app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
+    helm.sh/chart: monitoring-stack-{{ .Chart.Version }}
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.hosts.vminsert }}
+      http:
+        paths:
+          - path: /insert/0/prometheus
+            pathType: Prefix
+            backend:
+              service:
+                name: vminsert
+                port:
+                  number: 8480
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vminsert
+                port:
+                  number: 8480

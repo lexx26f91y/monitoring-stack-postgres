@@ -9,6 +9,7 @@ hosts:
   alertmanager: alertmanager.ens-proto.loc
   vmagent: vmagent.ens-proto.loc
   vmselect: vmselect.ens-proto.loc
+  vminsert: vminsert.ens-proto.loc
 
 ingress:
   gatewayName: monitoring-gateway
