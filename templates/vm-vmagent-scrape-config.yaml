@@ -2164,3 +2164,39 @@ data:
               job: trickster
               service: trickster
               tier: infra
+      # --- Метрики сервисов ---
+      - job_name: 'pgbouncer-exporter'
+        scrape_interval: {{ .Values.vmagent.scrapeInterval }}
+        metrics_path: /metrics
+        scheme: http
+        static_configs:
+          - targets:
+              - '192.168.105.9:9127'
+            labels:
+              instance: 192.168.105.9:9127
+              job: pgbouncer-exporter
+              service: pgbouncer
+              tier: infras
+      - job_name: 'nsi_exporter_targets_app'
+        scrape_interval: {{ .Values.vmagent.scrapeInterval }}
+        static_configs:
+        - targets:
+          - bft-ensi1.ens-proto.loc:9080
+          - bft-ensi2.ens-proto.loc:9080
+          labels:
+            environment: PROD
+            module: NSI
+        metrics_path: "/app/actuator/prometheus"
+        relabel_configs:
+        - source_labels: [ __address__ ]
+          target_label: __param_target
+        - source_labels: [ __param_target ]
+          target_label: instance
+  
+  
+      - job_name: nsi_vm
+        scrape_interval: {{ .Values.vmagent.scrapeInterval }}
+        static_configs:
+          - targets:
+            - bft-ensi1.ens-proto.loc:9100
+            - bft-ensi2.ens-proto.loc:9100

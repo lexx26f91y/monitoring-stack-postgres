@@ -24,7 +24,7 @@ spec:
         - name: vmstorage
           image: {{ printf "%s/%s:%s" .Values.imageRegistry .Values.victoria.vmstorage.image .Values.victoria.vmstorage.tag }}
           args:
-            - "-retentionPeriod=90d"
+            - "-retentionPeriod=30d"
             - "-storageDataPath=/storage"
           ports:
             - name: http
