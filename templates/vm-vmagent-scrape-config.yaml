@@ -2198,7 +2198,7 @@ data:
           - targets:
             - bft-ensi1.ens-proto.loc:9100
             - bft-ensi2.ens-proto.loc:9100
-      - job_name: 'services-63101'
+      - job_name: 'services-ps-ens'
         scrape_interval: {{ .Values.vmagent.scrapeInterval }}
         metrics_path: /actuator/prometheus
         scheme: http
@@ -2209,10 +2209,10 @@ data:
                 - ps
                 - ens-demo
         relabel_configs:
-          # только endpoints с портом 63101
+          # только определенные порты
           - action: keep
-            source_labels: [__meta_kubernetes_endpoint_port_number]
-            regex: "63101"
+            source_labels: [__address__]
+            regex: ".*:(9000|63101|9105|63100)$"
           # полезные метки
           - action: replace
             source_labels: [__meta_kubernetes_namespace]
