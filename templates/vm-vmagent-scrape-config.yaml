@@ -2192,11 +2192,39 @@ data:
           target_label: __param_target
         - source_labels: [ __param_target ]
           target_label: instance
-  
-  
       - job_name: nsi_vm
         scrape_interval: {{ .Values.vmagent.scrapeInterval }}
         static_configs:
           - targets:
             - bft-ensi1.ens-proto.loc:9100
             - bft-ensi2.ens-proto.loc:9100
+      - job_name: 'services-63101'
+        scrape_interval: {{ .Values.vmagent.scrapeInterval }}
+        metrics_path: /actuator/prometheus
+        scheme: http
+        kubernetes_sd_configs:
+          - role: endpoints
+            namespaces:
+              names:
+                - ps
+                - ens-demo
+        relabel_configs:
+          # только endpoints с портом 63101
+          - action: keep
+            source_labels: [__meta_kubernetes_endpoint_port_number]
+            regex: "63101"
+          # полезные метки
+          - action: replace
+            source_labels: [__meta_kubernetes_namespace]
+            target_label: namespace
+          - action: replace
+            source_labels: [__meta_kubernetes_service_name]
+            target_label: service
+          - action: replace
+            source_labels: [__meta_kubernetes_pod_name]
+            target_label: pod
+          # перенести service/pod labels
+          - action: labelmap
+            regex: __meta_kubernetes_service_label_(.+)
+          - action: labelmap
+            regex: __meta_kubernetes_pod_label_(.+)
